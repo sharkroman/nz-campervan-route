@@ -147,6 +147,7 @@ svg.map { width: 100%; height: auto; display: block; border-radius: 8px; }
 .itinerary-head {
   font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem;
+  display:flex; align-items:center; justify-content:space-between; gap:0.75rem;
 }
 .day-card {
   background: var(--bg2);
@@ -155,7 +156,24 @@ svg.map { width: 100%; height: auto; display: block; border-radius: 8px; }
   padding: 1.05rem 1.15rem 1.1rem;
   box-shadow: 0 1px 0 rgba(33,29,21,0.03);
 }
-.day-top { display:flex; align-items:center; gap:0.8rem; }
+.day-top { display:flex; align-items:center; gap:0.8rem; cursor:pointer; user-select:none; }
+.day-top::after {
+  content: '\25BE'; margin-left:0.5rem;
+  color: var(--muted); font-size:0.8rem;
+  transition: transform 0.18s ease;
+}
+.day-card.open .day-top::after { transform: rotate(180deg); }
+.day-card .note, .day-card .camp, .day-card .booking, .day-card .acts { display: none; }
+.day-card.open .note { display: block; }
+.day-card.open .camp { display: flex; }
+.day-card.open .booking, .day-card.open .acts { display: block; }
+.expand-all {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+  color: var(--accent); background: transparent;
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: 0.2rem 0.7rem; cursor: pointer;
+}
+.expand-all:hover { border-color: var(--accent); }
 .day-badge {
   width: 34px; height: 34px; border-radius: 50%;
   background: var(--accent); color: #fff;
@@ -299,7 +317,10 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
     </figure>
 
     <section class="itinerary">
-      <div class="itinerary-head"><span class="en">Itinerary</span><span class="zh">行程安排</span></div>
+      <div class="itinerary-head">
+        <span><span class="en">Itinerary</span><span class="zh">行程安排</span></span>
+        <button id="expandAll" class="expand-all" type="button"><span class="en">Expand all</span><span class="zh">全部展开</span></button>
+      </div>
 
       <article class="day-card">
         <div class="day-top">
@@ -527,6 +548,42 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
       btn.textContent = cur === 'zh' ? 'EN' : '中文';
     });
   }
+
+  var cards = document.querySelectorAll('.day-card');
+  var expandBtn = document.getElementById('expandAll');
+
+  function allOpen(){
+    for(var i=0;i<cards.length;i++){ if(!cards[i].classList.contains('open')) return false; }
+    return true;
+  }
+  function updateExpandLabel(){
+    if(!expandBtn) return;
+    if(allOpen()){
+      expandBtn.querySelector('.en').textContent = 'Collapse all';
+      expandBtn.querySelector('.zh').textContent = '全部收起';
+    } else {
+      expandBtn.querySelector('.en').textContent = 'Expand all';
+      expandBtn.querySelector('.zh').textContent = '全部展开';
+    }
+  }
+
+  cards.forEach(function(card){
+    var top = card.querySelector('.day-top');
+    var route = card.querySelector('.route-line');
+    var toggle = function(){ card.classList.toggle('open'); updateExpandLabel(); };
+    if(top) top.addEventListener('click', toggle);
+    if(route) route.addEventListener('click', toggle);
+  });
+
+  if(expandBtn){
+    expandBtn.addEventListener('click', function(){
+      var open = allOpen();
+      cards.forEach(function(c){ if(open){ c.classList.remove('open'); } else { c.classList.add('open'); } });
+      updateExpandLabel();
+    });
+  }
+
+  updateExpandLabel();
 })();
 </script>
 </body>
