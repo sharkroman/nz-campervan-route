@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Zealand Campervan Road Trip — Route Map</title>
+<script>
+(function(){try{var l=localStorage.getItem('nz-lang');if(l==='zh'){document.documentElement.setAttribute('data-lang','zh');document.documentElement.setAttribute('lang','zh');}}catch(e){}})();
+</script>
 <style>
 @font-face { font-family:'Lora'; src:url('./_shared/fonts/Lora-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
 @font-face { font-family:'Lora'; src:url('./_shared/fonts/Lora-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
@@ -40,6 +43,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 1180px; margin: 0 auto; }
+
+/* Language toggle */
+.zh { display: none; }
+html[data-lang="zh"] .en { display: none; }
+html[data-lang="zh"] .zh { display: inline; }
+.lang-toggle {
+  position: fixed; top: 1.1rem; right: 1.2rem; z-index: 60;
+  font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em;
+  color: var(--accent); background: var(--bg2);
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: 0.5rem 0.95rem; cursor: pointer;
+  box-shadow: 0 1px 0 rgba(33,29,21,0.05);
+}
+.lang-toggle:hover { border-color: var(--accent); }
 
 /* Header */
 .masthead { margin-bottom: 1.6rem; }
@@ -211,22 +228,23 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
 </style>
 </head>
 <body>
+<button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language / 切换语言">中文</button>
 <div class="wrap">
   <header class="masthead">
-    <div class="eyebrow">New Zealand · Campervan Road Trip</div>
-    <h1>Christchurch <span class="arrow">→</span> Auckland</h1>
-    <p class="subtitle">Five days across both islands · Sep 28 – Oct 2, 2026</p>
+    <div class="eyebrow"><span class="en">New Zealand · Campervan Road Trip</span><span class="zh">新西兰 · 房车公路之旅</span></div>
+    <h1><span class="en">Christchurch <span class="arrow">→</span> Auckland</span><span class="zh">基督城 <span class="arrow">→</span> 奥克兰</span></h1>
+    <p class="subtitle"><span class="en">Across both islands · Sep 27 – Oct 2, 2026</span><span class="zh">贯穿南北两岛 · 2026年9月27日 – 10月2日</span></p>
     <div class="stats">
-      <div class="stat"><span class="num">5 <em>days</em></span><span class="lbl">Duration</span></div>
-      <div class="stat"><span class="num">2 <em>islands</em></span><span class="lbl">North &amp; South</span></div>
-      <div class="stat"><span class="num">~14 <em>hr</em></span><span class="lbl">Total driving</span></div>
-      <div class="stat"><span class="num">1 <em>ferry</em></span><span class="lbl">Cook Strait</span></div>
+      <div class="stat"><span class="num"><span class="en">6 <em>days</em></span><span class="zh">6 <em>天</em></span></span><span class="lbl"><span class="en">Duration</span><span class="zh">时长</span></span></div>
+      <div class="stat"><span class="num"><span class="en">2 <em>islands</em></span><span class="zh">2 <em>岛</em></span></span><span class="lbl"><span class="en">North &amp; South</span><span class="zh">南北岛</span></span></div>
+      <div class="stat"><span class="num"><span class="en">~14 <em>hr</em></span><span class="zh">约14 <em>小时</em></span></span><span class="lbl"><span class="en">Total driving</span><span class="zh">总驾车</span></span></div>
+      <div class="stat"><span class="num"><span class="en">1 <em>ferry</em></span><span class="zh">1 <em>渡轮</em></span></span><span class="lbl"><span class="en">Cook Strait</span><span class="zh">库克海峡</span></span></div>
     </div>
   </header>
 
   <main class="grid">
     <figure class="map-panel">
-      <svg class="map" viewBox="0 0 564 780" role="img" aria-label="Map of New Zealand showing the five-day campervan route from Christchurch to Auckland">
+      <svg class="map" viewBox="0 0 564 780" role="img" aria-label="Map of New Zealand showing the campervan route from Christchurch to Auckland">
 <rect class="sea" x="0" y="0" width="564" height="780"/>
 <g class="grat">
 <line x1="0" y1="130.0" x2="564" y2="130.0"/>
@@ -271,48 +289,98 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
 <g class="scale"><line x1="46" y1="738.0" x2="46" y2="738.0"/><line x1="46" y1="738.0" x2="143.6" y2="738.0"/><line x1="143.6" y1="738.0" x2="143.6" y2="738.0"/><text x="94.8" y="730.0" text-anchor="middle">200 km</text></g>
       </svg>
       <figcaption>
-        <span>Route map · Christchurch to Auckland</span>
+        <span><span class="en">Route map · Christchurch to Auckland</span><span class="zh">路线图 · 基督城至奥克兰</span></span>
         <span class="legend">
-          <span><i></i>Drive</span>
-          <span><i class="ferry"></i>Ferry</span>
-          <span><i class="dot"></i>Campsite</span>
+          <span><i></i><span class="en">Drive</span><span class="zh">驾车</span></span>
+          <span><i class="ferry"></i><span class="en">Ferry</span><span class="zh">渡轮</span></span>
+          <span><i class="dot"></i><span class="en">Campsite</span><span class="zh">露营地</span></span>
         </span>
       </figcaption>
     </figure>
 
     <section class="itinerary">
-      <div class="itinerary-head">Itinerary</div>
+      <div class="itinerary-head"><span class="en">Itinerary</span><span class="zh">行程安排</span></div>
+
+      <article class="day-card">
+        <div class="day-top">
+          <span class="day-badge">0</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 0</span><span class="zh">第0天</span></span><span class="day-date"><span class="en">Sep 27</span><span class="zh">9月27日</span></span></div>
+          <span class="chip"><span class="en">3h 25m · Air NZ</span><span class="zh">约3小时25分 · 新西兰航空</span></span>
+        </div>
+        <div class="route-line"><span class="en">Melbourne <span class="arr">→</span> Christchurch</span><span class="zh">墨尔本 <span class="arr">→</span> 基督城</span></div>
+        <div class="note"><span class="en">Arrive late · overnight in the city · collect campervan next morning</span><span class="zh">深夜抵达 · 市区过夜 · 次日早晨取房车</span></div>
+        <div class="camp">
+          <div><span class="camp-name"><span class="en">Crowne Plaza Christchurch</span><span class="zh">基督城皇冠假日酒店</span></span><span class="camp-price"><span class="en">1 night · near Cathedral Square</span><span class="zh">1晚 · 邻近大教堂广场</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Crowne+Plaza+Christchurch+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
+        </div>
+        <div class="booking">
+          <div class="booking-label"><span class="en">Flight · Booking confirmation</span><span class="zh">航班 · 预订确认</span></div>
+          <div class="bgrid">
+            <div class="bkey"><span class="en">Airline</span><span class="zh">航空公司</span></div>
+            <div class="bval"><span class="en">Air New Zealand NZ216</span><span class="zh">新西兰航空 NZ216</span></div>
+            <div class="bkey"><span class="en">Route</span><span class="zh">航线</span></div>
+            <div class="bval"><span class="en">Melbourne (MEL T2) → Christchurch (CHC)</span><span class="zh">墨尔本（MEL 2号航站楼）→ 基督城（CHC）</span></div>
+            <div class="bkey"><span class="en">Depart</span><span class="zh">出发</span></div>
+            <div class="bval"><span class="en">Sun, Sep 27 · 5:10 PM</span><span class="zh">9月27日 周日 · 17:10</span></div>
+            <div class="bkey"><span class="en">Arrive</span><span class="zh">抵达</span></div>
+            <div class="bval"><span class="en">Sun, Sep 27 · 11:35 PM</span><span class="zh">9月27日 周日 · 23:35</span></div>
+            <div class="bkey"><span class="en">Booking #</span><span class="zh">预订号</span></div>
+            <div class="bval"><span class="en">1359048008284994</span><span class="zh">1359048008284994</span></div>
+            <div class="bkey"><span class="en">Passengers</span><span class="zh">乘客</span></div>
+            <div class="bval"><span class="en">Ce Li · Qiaozhi Zhang (Economy)</span><span class="zh">Ce Li · Qiaozhi Zhang（经济舱）</span></div>
+            <div class="bkey"><span class="en">Baggage</span><span class="zh">行李</span></div>
+            <div class="bval"><span class="en">1 carry-on 7 kg + personal item · no checked bags</span><span class="zh">1件随身行李7kg + 个人物品 · 无托运行李</span></div>
+          </div>
+        </div>
+        <div class="booking">
+          <div class="booking-label"><span class="en">Accommodation · Booking confirmation</span><span class="zh">住宿 · 预订确认</span></div>
+          <div class="bgrid">
+            <div class="bkey"><span class="en">Hotel</span><span class="zh">酒店</span></div>
+            <div class="bval"><span class="en">Crowne Plaza Christchurch</span><span class="zh">基督城皇冠假日酒店</span></div>
+            <div class="bkey"><span class="en">Check-in</span><span class="zh">入住</span></div>
+            <div class="bval"><span class="en">Sun, Sep 27 · from 3:00 PM</span><span class="zh">9月27日 周日 · 15:00 起</span></div>
+            <div class="bkey"><span class="en">Check-out</span><span class="zh">退房</span></div>
+            <div class="bval"><span class="en">Mon, Sep 28 · before 11:00 AM</span><span class="zh">9月28日 周一 · 11:00 前</span></div>
+            <div class="bkey"><span class="en">Address</span><span class="zh">地址</span></div>
+            <div class="bval"><span class="en">764 Colombo Street, Christchurch 8011<br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Crowne+Plaza+Christchurch+New+Zealand">Open in Maps ↗</a></span><span class="zh">764 Colombo Street, 基督城 8011<br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Crowne+Plaza+Christchurch+New+Zealand">在地图中打开 ↗</a></span></div>
+            <div class="bkey"><span class="en">Confirmation #</span><span class="zh">确认号</span></div>
+            <div class="bval"><span class="en">64354830</span><span class="zh">64354830</span></div>
+            <div class="bkey"><span class="en">Phone</span><span class="zh">电话</span></div>
+            <div class="bval"><span class="en">+64 3 741 2800</span><span class="zh">+64 3 741 2800</span></div>
+          </div>
+        </div>
+      </article>
 
       <article class="day-card">
         <div class="day-top">
           <span class="day-badge">1</span>
-          <div class="day-id"><span class="day-label">Day 1</span><span class="day-date">Sep 28</span></div>
-          <span class="chip">2.5 hr · SH1</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 1</span><span class="zh">第1天</span></span><span class="day-date"><span class="en">Sep 28</span><span class="zh">9月28日</span></span></div>
+          <span class="chip"><span class="en">2.5 hr · SH1</span><span class="zh">约2.5小时 · 1号国道</span></span>
         </div>
-        <div class="route-line">Christchurch <span class="arr">→</span> Kaikōura</div>
+        <div class="route-line"><span class="en">Christchurch <span class="arr">→</span> Kaikōura</span><span class="zh">基督城 <span class="arr">→</span> 凯库拉</span></div>
         <div class="camp">
-          <div><span class="camp-name">Kaikoura TOP 10 Holiday Park</span><span class="camp-price">from ~$63 NZD</span></div>
-          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kaikoura+TOP+10+Holiday+Park+Kaikoura+New+Zealand">Open in Maps <span class="arr">↗</span></a>
+          <div><span class="camp-name"><span class="en">Kaikoura TOP 10 Holiday Park</span><span class="zh">凯库拉 TOP 10 假日公园</span></span><span class="camp-price"><span class="en">from ~$63 NZD</span><span class="zh">约63新西兰元起</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kaikoura+TOP+10+Holiday+Park+Kaikoura+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
         </div>
         <div class="booking">
-          <div class="booking-label">Booking confirmation</div>
+          <div class="booking-label"><span class="en">Booking confirmation</span><span class="zh">预订确认</span></div>
           <div class="bgrid">
-            <div class="bkey">Campervan</div>
-            <div class="bval">CamperCo (the Stables) — pick-up appointment</div>
-            <div class="bkey">Pickup</div>
-            <div class="bval">Mon, Sep 28 · 11:00 AM</div>
-            <div class="bkey">Address</div>
-            <div class="bval">252 Ryans Road, Yaldhurst, Christchurch 7676<br><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/aqFyzBa8LpvaCutn8">Open pickup location ↗</a></div>
-            <div class="bkey">Contact</div>
-            <div class="bval">Ross Brittenden · call/text/WhatsApp <span class="bmuted">+64 21 329 920</span></div>
+            <div class="bkey"><span class="en">Campervan</span><span class="zh">房车</span></div>
+            <div class="bval"><span class="en">CamperCo (the Stables) — pick-up appointment</span><span class="zh">CamperCo（the Stables）— 取车预约</span></div>
+            <div class="bkey"><span class="en">Pickup</span><span class="zh">取车</span></div>
+            <div class="bval"><span class="en">Mon, Sep 28 · 11:00 AM</span><span class="zh">9月28日 周一 · 11:00</span></div>
+            <div class="bkey"><span class="en">Address</span><span class="zh">地址</span></div>
+            <div class="bval"><span class="en">252 Ryans Road, Yaldhurst, Christchurch 7676<br><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/aqFyzBa8LpvaCutn8">Open pickup location ↗</a></span><span class="zh">252 Ryans Road, Yaldhurst, 基督城 7676<br><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/aqFyzBa8LpvaCutn8">打开取车地点 ↗</a></span></div>
+            <div class="bkey"><span class="en">Contact</span><span class="zh">联系人</span></div>
+            <div class="bval"><span class="en">Ross Brittenden · call/text/WhatsApp <span class="bmuted">+64 21 329 920</span></span><span class="zh">Ross Brittenden · 电话/短信/WhatsApp <span class="bmuted">+64 21 329 920</span></span></div>
           </div>
         </div>
         <div class="acts">
-          <div class="acts-label">Top 3 in the area</div>
+          <div class="acts-label"><span class="en">Top 3 in the area</span><span class="zh">当地必玩 Top 3</span></div>
           <ol>
-            <li><strong>Whale-watching cruise</strong> — spot sperm whales year-round</li>
-            <li><strong>Kaikōura Peninsula Walkway</strong> — coastal trail &amp; fur-seal colony</li>
-            <li><strong>Swim with dolphins</strong> — dusky dolphins or seal kayaking</li>
+            <li><span class="en"><strong>Whale-watching cruise</strong> — spot sperm whales year-round</span><span class="zh"><strong>观鲸游船</strong> — 全年可见抹香鲸</span></li>
+            <li><span class="en"><strong>Kaikōura Peninsula Walkway</strong> — coastal trail &amp; fur-seal colony</span><span class="zh"><strong>凯库拉半岛步道</strong> — 海岸步道与毛皮海豹栖息地</span></li>
+            <li><span class="en"><strong>Swim with dolphins</strong> — dusky dolphins or seal kayaking</span><span class="zh"><strong>与海豚共泳</strong> — 暗色斑纹海豚或海豹皮划艇</span></li>
           </ol>
         </div>
       </article>
@@ -320,40 +388,40 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
       <article class="day-card">
         <div class="day-top">
           <span class="day-badge">2</span>
-          <div class="day-id"><span class="day-label">Day 2</span><span class="day-date">Sep 29</span></div>
-          <span class="chip">2.5 hr + ferry</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 2</span><span class="zh">第2天</span></span><span class="day-date"><span class="en">Sep 29</span><span class="zh">9月29日</span></span></div>
+          <span class="chip"><span class="en">2.5 hr + ferry</span><span class="zh">约2.5小时 + 渡轮</span></span>
         </div>
-        <div class="route-line">Kaikōura <span class="arr">→</span> Picton <span class="arr">→</span> Wellington</div>
-        <div class="note">Ferry day · check-in closes 1:00 PM · depart 2:00 PM · arrive 5:30 PM</div>
+        <div class="route-line"><span class="en">Kaikōura <span class="arr">→</span> Picton <span class="arr">→</span> Wellington</span><span class="zh">凯库拉 <span class="arr">→</span> 皮克顿 <span class="arr">→</span> 惠灵顿</span></div>
+        <div class="note"><span class="en">Ferry day · check-in closes 1:00 PM · depart 2:00 PM · arrive 5:30 PM</span><span class="zh">渡轮日 · 值机13:00截止 · 14:00出发 · 17:30抵达</span></div>
         <div class="camp">
-          <div><span class="camp-name">Wellington TOP 10 Holiday Park</span><span class="camp-price">from ~$45 NZD · free alt: Evans Bay Marina</span></div>
-          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Wellington+TOP+10+Holiday+Park+Wellington+New+Zealand">Open in Maps <span class="arr">↗</span></a>
+          <div><span class="camp-name"><span class="en">Wellington TOP 10 Holiday Park</span><span class="zh">惠灵顿 TOP 10 假日公园</span></span><span class="camp-price"><span class="en">from ~$45 NZD · free alt: Evans Bay Marina</span><span class="zh">约45新西兰元起 · 免费替代：埃文斯湾码头</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Wellington+TOP+10+Holiday+Park+Wellington+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
         </div>
         <div class="booking">
-          <div class="booking-label">Booking confirmation</div>
+          <div class="booking-label"><span class="en">Booking confirmation</span><span class="zh">预订确认</span></div>
           <div class="bgrid">
-            <div class="bkey">Ferry</div>
-            <div class="bval">Bluebridge · Picton → Wellington</div>
-            <div class="bkey">Booking #</div>
-            <div class="bval">1197413 <span class="bmuted">Booked on 02 Sep 2026 · Cust. No. C310096</span></div>
-            <div class="bkey">Passengers</div>
-            <div class="bval">Ce Li, Qiaozhi Zhang</div>
-            <div class="bkey">Vehicle</div>
-            <div class="bval">Motorhome / Campervan · 7m</div>
-            <div class="bkey">Terminals</div>
-            <div class="bval">Picton Passenger Terminal: 1 Lagoon Rd, Picton<br>Wellington Passenger Terminal: 50 Waterloo Quay, Wellington</div>
-            <div class="bkey">Total</div>
-            <div class="bval">$544.87 (incl GST) <span class="bmuted">Outstanding: $0.00</span></div>
-            <div class="bkey">Check-in</div>
-            <div class="bval"><a target="_blank" rel="noopener" href="https://www.bluebridge.co.nz/check-in">bluebridge.co.nz/check-in ↗</a></div>
+            <div class="bkey"><span class="en">Ferry</span><span class="zh">渡轮</span></div>
+            <div class="bval"><span class="en">Bluebridge · Picton → Wellington</span><span class="zh">Bluebridge · 皮克顿 → 惠灵顿</span></div>
+            <div class="bkey"><span class="en">Booking #</span><span class="zh">预订号</span></div>
+            <div class="bval"><span class="en">1197413 <span class="bmuted">Booked on 02 Sep 2026 · Cust. No. C310096</span></span><span class="zh">1197413 <span class="bmuted">预订于2026年9月2日 · 客户号 C310096</span></span></div>
+            <div class="bkey"><span class="en">Passengers</span><span class="zh">乘客</span></div>
+            <div class="bval"><span class="en">Ce Li, Qiaozhi Zhang</span><span class="zh">Ce Li, Qiaozhi Zhang</span></div>
+            <div class="bkey"><span class="en">Vehicle</span><span class="zh">车辆</span></div>
+            <div class="bval"><span class="en">Motorhome / Campervan · 7m</span><span class="zh">房车 / 露营车 · 7米</span></div>
+            <div class="bkey"><span class="en">Terminals</span><span class="zh">码头</span></div>
+            <div class="bval"><span class="en">Picton Passenger Terminal: 1 Lagoon Rd, Picton<br>Wellington Passenger Terminal: 50 Waterloo Quay, Wellington</span><span class="zh">皮克顿客运码头：1 Lagoon Rd, Picton<br>惠灵顿客运码头：50 Waterloo Quay, Wellington</span></div>
+            <div class="bkey"><span class="en">Total</span><span class="zh">总价</span></div>
+            <div class="bval"><span class="en">$544.87 (incl GST) <span class="bmuted">Outstanding: $0.00</span></span><span class="zh">$544.87（含GST） <span class="bmuted">未付余额：$0.00</span></span></div>
+            <div class="bkey"><span class="en">Check-in</span><span class="zh">值机</span></div>
+            <div class="bval"><span class="en"><a target="_blank" rel="noopener" href="https://www.bluebridge.co.nz/check-in">bluebridge.co.nz/check-in ↗</a></span><span class="zh"><a target="_blank" rel="noopener" href="https://www.bluebridge.co.nz/check-in">bluebridge.co.nz/check-in ↗</a></span></div>
           </div>
         </div>
         <div class="acts">
-          <div class="acts-label">Top 3 in the area</div>
+          <div class="acts-label"><span class="en">Top 3 in the area</span><span class="zh">当地必玩 Top 3</span></div>
           <ol>
-            <li><strong>Te Papa Tongarewa</strong> — the national museum</li>
-            <li><strong>Wellington Cable Car</strong> — up to the Botanic Garden</li>
-            <li><strong>Mount Victoria lookout</strong> — city views, then Cuba Street</li>
+            <li><span class="en"><strong>Te Papa Tongarewa</strong> — the national museum</span><span class="zh"><strong>蒂帕帕国家博物馆</strong> — 新西兰国家博物馆</span></li>
+            <li><span class="en"><strong>Wellington Cable Car</strong> — up to the Botanic Garden</span><span class="zh"><strong>惠灵顿缆车</strong> — 上山至植物园</span></li>
+            <li><span class="en"><strong>Mount Victoria lookout</strong> — city views, then Cuba Street</span><span class="zh"><strong>维多利亚山观景台</strong> — 城市景观，随后逛古巴街</span></li>
           </ol>
         </div>
       </article>
@@ -361,21 +429,21 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
       <article class="day-card">
         <div class="day-top">
           <span class="day-badge">3</span>
-          <div class="day-id"><span class="day-label">Day 3</span><span class="day-date">Sep 30</span></div>
-          <span class="chip">5 hr · Desert Rd</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 3</span><span class="zh">第3天</span></span><span class="day-date"><span class="en">Sep 30</span><span class="zh">9月30日</span></span></div>
+          <span class="chip"><span class="en">5 hr · Desert Rd</span><span class="zh">约5小时 · 沙漠路</span></span>
         </div>
-        <div class="route-line">Wellington <span class="arr">→</span> Lake Taupō</div>
-        <div class="note">Scenic Desert Road via State Highway 1</div>
+        <div class="route-line"><span class="en">Wellington <span class="arr">→</span> Lake Taupō</span><span class="zh">惠灵顿 <span class="arr">→</span> 陶波湖</span></div>
+        <div class="note"><span class="en">Scenic Desert Road via State Highway 1</span><span class="zh">沿1号国道，风景优美的沙漠路</span></div>
         <div class="camp">
-          <div><span class="camp-name">Taupo DeBretts Spa Resort</span><span class="camp-price">from ~$60 NZD</span></div>
-          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Taupo+DeBretts+Spa+Resort+Taupo+New+Zealand">Open in Maps <span class="arr">↗</span></a>
+          <div><span class="camp-name"><span class="en">Taupo DeBretts Spa Resort</span><span class="zh">陶波 DeBretts 温泉度假村</span></span><span class="camp-price"><span class="en">from ~$60 NZD</span><span class="zh">约60新西兰元起</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Taupo+DeBretts+Spa+Resort+Taupo+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
         </div>
         <div class="acts">
-          <div class="acts-label">Top 3 in the area</div>
+          <div class="acts-label"><span class="en">Top 3 in the area</span><span class="zh">当地必玩 Top 3</span></div>
           <ol>
-            <li><strong>Huka Falls</strong> — thundering turquoise gorge</li>
-            <li><strong>Mine Bay carvings</strong> — Māori rock art by boat</li>
-            <li><strong>Geothermal hot pools</strong> — soak at DeBretts</li>
+            <li><span class="en"><strong>Huka Falls</strong> — thundering turquoise gorge</span><span class="zh"><strong>胡卡瀑布</strong> — 轰鸣的碧绿色峡谷</span></li>
+            <li><span class="en"><strong>Mine Bay carvings</strong> — Māori rock art by boat</span><span class="zh"><strong>迈恩湾石刻</strong> — 乘船观赏毛利岩刻</span></li>
+            <li><span class="en"><strong>Geothermal hot pools</strong> — soak at DeBretts</span><span class="zh"><strong>地热温泉</strong> — 在 DeBretts 泡汤</span></li>
           </ol>
         </div>
       </article>
@@ -383,21 +451,21 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
       <article class="day-card">
         <div class="day-top">
           <span class="day-badge">4</span>
-          <div class="day-id"><span class="day-label">Day 4</span><span class="day-date">Oct 1</span></div>
-          <span class="chip">1 hr</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 4</span><span class="zh">第4天</span></span><span class="day-date"><span class="en">Oct 1</span><span class="zh">10月1日</span></span></div>
+          <span class="chip"><span class="en">1 hr</span><span class="zh">约1小时</span></span>
         </div>
-        <div class="route-line">Lake Taupō <span class="arr">→</span> Rotorua</div>
-        <div class="note">Thermal parks &amp; redwoods</div>
+        <div class="route-line"><span class="en">Lake Taupō <span class="arr">→</span> Rotorua</span><span class="zh">陶波湖 <span class="arr">→</span> 罗托鲁瓦</span></div>
+        <div class="note"><span class="en">Thermal parks &amp; redwoods</span><span class="zh">地热公园与红杉林</span></div>
         <div class="camp">
-          <div><span class="camp-name">Rotorua Thermal Holiday Park</span><span class="camp-price">$28 – $45 NZD</span></div>
-          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rotorua+Thermal+Holiday+Park+Rotorua+New+Zealand">Open in Maps <span class="arr">↗</span></a>
+          <div><span class="camp-name"><span class="en">Rotorua Thermal Holiday Park</span><span class="zh">罗托鲁瓦地热假日公园</span></span><span class="camp-price"><span class="en">$28 – $45 NZD</span><span class="zh">28 – 45新西兰元</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Rotorua+Thermal+Holiday+Park+Rotorua+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
         </div>
         <div class="acts">
-          <div class="acts-label">Top 3 in the area</div>
+          <div class="acts-label"><span class="en">Top 3 in the area</span><span class="zh">当地必玩 Top 3</span></div>
           <ol>
-            <li><strong>Wai-O-Tapu</strong> — colourful thermal wonderland</li>
-            <li><strong>Redwoods Treewalk</strong> — forest canopy bridges</li>
-            <li><strong>Te Puia</strong> — geysers &amp; Māori cultural evening (hāngī)</li>
+            <li><span class="en"><strong>Wai-O-Tapu</strong> — colourful thermal wonderland</span><span class="zh"><strong>怀奥塔普</strong> — 色彩斑斓的地热仙境</span></li>
+            <li><span class="en"><strong>Redwoods Treewalk</strong> — forest canopy bridges</span><span class="zh"><strong>红杉树顶步道</strong> — 森林树冠吊桥</span></li>
+            <li><span class="en"><strong>Te Puia</strong> — geysers &amp; Māori cultural evening (hāngī)</span><span class="zh"><strong>蒂普亚</strong> — 间歇泉与毛利文化之夜（杭吉大餐）</span></li>
           </ol>
         </div>
       </article>
@@ -405,36 +473,36 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
       <article class="day-card">
         <div class="day-top">
           <span class="day-badge">5</span>
-          <div class="day-id"><span class="day-label">Day 5</span><span class="day-date">Oct 2</span></div>
-          <span class="chip">3 hr · Waikato</span>
+          <div class="day-id"><span class="day-label"><span class="en">Day 5</span><span class="zh">第5天</span></span><span class="day-date"><span class="en">Oct 2</span><span class="zh">10月2日</span></span></div>
+          <span class="chip"><span class="en">3 hr · Waikato</span><span class="zh">约3小时 · 怀卡托</span></span>
         </div>
-        <div class="route-line">Rotorua <span class="arr">→</span> Auckland</div>
-        <div class="note">Return keys at the airport depot</div>
+        <div class="route-line"><span class="en">Rotorua <span class="arr">→</span> Auckland</span><span class="zh">罗托鲁瓦 <span class="arr">→</span> 奥克兰</span></div>
+        <div class="note"><span class="en">Return keys at the airport depot</span><span class="zh">在机场停车场归还钥匙</span></div>
         <div class="camp">
-          <div><span class="camp-name">Auckland Airport (drop-off)</span><span class="camp-price">End of trip</span></div>
-          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Auckland+Airport+New+Zealand">Open in Maps <span class="arr">↗</span></a>
+          <div><span class="camp-name"><span class="en">Auckland Airport (drop-off)</span><span class="zh">奥克兰机场（还车点）</span></span><span class="camp-price"><span class="en">End of trip</span><span class="zh">行程结束</span></span></div>
+          <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Auckland+Airport+New+Zealand"><span class="en">Open in Maps <span class="arr">↗</span></span><span class="zh">在地图中打开 <span class="arr">↗</span></span></a>
         </div>
         <div class="booking">
-          <div class="booking-label">Booking confirmation</div>
+          <div class="booking-label"><span class="en">Booking confirmation</span><span class="zh">预订确认</span></div>
           <div class="bgrid">
-            <div class="bkey">Campervan</div>
-            <div class="bval">CamperCo — drop-off via Flyaway (contractor)</div>
-            <div class="bkey">Drop-off</div>
-            <div class="bval">Fri, Oct 2 · 3:00 PM</div>
-            <div class="bkey">Address</div>
-            <div class="bval">Flyaway, 3 Verissimo Drive, Māngere, Auckland 2022<br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.app.goo.gl/xgcSPdACZWRMayHA7\">Open drop-off location ↗</a></div>
-            <div class="bkey">How</div>
-            <div class="bval">Park in the “drop-off” area near reception, hand in the keys, and tell reception you’re dropping off for CamperCo.</div>
-            <div class="bkey">Phone</div>
+            <div class="bkey"><span class="en">Campervan</span><span class="zh">房车</span></div>
+            <div class="bval"><span class="en">CamperCo — drop-off via Flyaway (contractor)</span><span class="zh">CamperCo — 经 Flyaway（承包商）还车</span></div>
+            <div class="bkey"><span class="en">Drop-off</span><span class="zh">还车</span></div>
+            <div class="bval"><span class="en">Fri, Oct 2 · 3:00 PM</span><span class="zh">10月2日 周五 · 15:00</span></div>
+            <div class="bkey"><span class="en">Address</span><span class="zh">地址</span></div>
+            <div class="bval"><span class="en">Flyaway, 3 Verissimo Drive, Māngere, Auckland 2022<br><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/xgcSPdACZWRMayHA7">Open drop-off location ↗</a></span><span class="zh">Flyaway, 3 Verissimo Drive, Māngere, 奥克兰 2022<br><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/xgcSPdACZWRMayHA7">打开还车地点 ↗</a></span></div>
+            <div class="bkey"><span class="en">How</span><span class="zh">还车方式</span></div>
+            <div class="bval"><span class="en">Park in the “drop-off” area near reception, hand in the keys, and tell reception you're dropping off for CamperCo.</span><span class="zh">停在接待处附近的“还车”区，交还钥匙，并告知前台您是来为 CamperCo 还车。</span></div>
+            <div class="bkey"><span class="en">Phone</span><span class="zh">电话</span></div>
             <div class="bval"><span class="bmuted">0800 77 66 99 (option 1) · 021 431 823</span></div>
           </div>
         </div>
         <div class="acts">
-          <div class="acts-label">Top 3 en route</div>
+          <div class="acts-label"><span class="en">Top 3 en route</span><span class="zh">沿途必玩 Top 3</span></div>
           <ol>
-            <li><strong>Hobbiton Movie Set</strong> — Matamata, the Shire</li>
-            <li><strong>Waitomo Glowworm Caves</strong> — boat through the grotto</li>
-            <li><strong>Sky Tower</strong> — Auckland waterfront</li>
+            <li><span class="en"><strong>Hobbiton Movie Set</strong> — Matamata, the Shire</span><span class="zh"><strong>霍比屯电影拍摄地</strong> — 玛塔玛塔，夏尔</span></li>
+            <li><span class="en"><strong>Waitomo Glowworm Caves</strong> — boat through the grotto</span><span class="zh"><strong>怀托摩萤火虫洞</strong> — 乘船穿行洞窟</span></li>
+            <li><span class="en"><strong>Sky Tower</strong> — Auckland waterfront</span><span class="zh"><strong>天空塔</strong> — 奥克兰海滨</span></li>
           </ol>
         </div>
       </article>
@@ -442,8 +510,24 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
   </main>
 
   <footer>
-    <p class="foot-note">Drive times &amp; prices are approximate · Prices in NZD · State Highways 1 &amp; 2. Map geometry from Natural Earth (public domain).</p>
+    <p class="foot-note"><span class="en">Drive times &amp; prices are approximate · Prices in NZD · State Highways 1 &amp; 2. Map geometry from Natural Earth (public domain).</span><span class="zh">车程与价格均为估算 · 价格以新西兰元计 · 主要沿 1 号与 2 号国道。地图几何数据来自 Natural Earth（公有领域）。</span></p>
   </footer>
 </div>
+
+<script>
+(function(){
+  var btn = document.getElementById('langToggle');
+  if(btn){
+    btn.addEventListener('click', function(){
+      var html = document.documentElement;
+      var cur = html.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+      html.setAttribute('data-lang', cur);
+      html.setAttribute('lang', cur);
+      try { localStorage.setItem('nz-lang', cur); } catch(e){}
+      btn.textContent = cur === 'zh' ? 'EN' : '中文';
+    });
+  }
+})();
+</script>
 </body>
 </html>
