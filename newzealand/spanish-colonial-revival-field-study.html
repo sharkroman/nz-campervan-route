@@ -702,9 +702,15 @@
           body: JSON.stringify({ prompt: '{{prompt}}', image_url: '{{image}}', image_size: 'square_hd', strength: 0.72, num_images: 1, output_format: 'png', enable_safety_checker: true }, null, 2)
         },
         openrouter: {
-          endpoint: 'https://openrouter.ai/api/v1/images/generations',
+          endpoint: 'https://openrouter.ai/api/v1/images',
           auth: 'Bearer',
-          body: JSON.stringify({ model: 'openai/gpt-image-1', prompt: '{{prompt}}', n: 1, size: '{{size}}' }, null, 2)
+          body: JSON.stringify({
+            model: 'bytedance-seed/seedream-5-0-pro',
+            prompt: '{{prompt}}',
+            input_references: [{ type: 'image_url', image_url: { url: '{{image}}' } }],
+            n: 1,
+            size: '{{size}}'
+          }, null, 2)
         }
       };
 
