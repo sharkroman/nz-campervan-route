@@ -148,6 +148,90 @@
   .gallery img:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
   .gallery figcaption{ font-size:12px; color:var(--muted2); margin-top:7px; text-align:center; }
 
+  .topnav a{ color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:600; letter-spacing:.01em; }
+  .topnav a:hover{ color:var(--accent-deep); }
+
+  /* ---------- Style Restyle Studio ---------- */
+  .studio-card{ background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:28px 30px; box-shadow:var(--shadow-sm); }
+  .studio-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .studio-panel{ background:#fffdf9; border:1px solid var(--rule); border-radius:14px; padding:20px 22px; }
+  .studio-panel h4{ font-size:14px; font-weight:700; margin:0 0 14px; color:var(--ink); letter-spacing:.01em; display:flex; align-items:center; gap:8px; }
+  .studio-panel h4::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); flex:none; }
+  .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+  .panel-head h4{ margin:0; }
+  .ptools{ display:flex; gap:8px; flex:none; }
+
+  .dropzone{ border:2px dashed var(--rule); border-radius:14px; padding:30px 18px; text-align:center; cursor:pointer; transition:border-color .2s ease, background .2s ease; background:var(--bg2); }
+  .dropzone:hover, .dropzone.drag{ border-color:var(--accent); background:rgba(217,119,87,.06); }
+  .dz-icon{ font-size:26px; color:var(--accent); line-height:1; display:block; margin-bottom:8px; }
+  .dz-title{ margin:0; font-size:14.5px; font-weight:600; color:var(--ink); }
+  .dz-sub{ margin:4px 0 0; font-size:12px; color:var(--muted2); }
+  .dropzone img.dz-preview{ display:block; width:100%; max-height:240px; object-fit:contain; border-radius:10px; margin:0 auto; }
+
+  .ba-hint{ margin-top:12px; font-size:11.5px; color:var(--muted2); line-height:1.5; }
+
+  /* fields & buttons */
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:12.5px; font-weight:600; color:var(--muted); margin-bottom:6px; letter-spacing:.01em; }
+  .field label code, .hint code{ font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:11px; background:var(--bg); padding:1px 5px; border-radius:5px; color:var(--accent-deep); }
+  .field input[type=text], .field input[type=url], .field input[type=password], .field textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--rule); border-radius:10px;
+    font-size:13.5px; font-family:var(--sans); color:var(--ink); background:#fff; resize:vertical; line-height:1.5;
+  }
+  .field textarea{ min-height:150px; }
+  .field input.mono, .field textarea.mono{ font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:12.5px; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,87,.13); }
+  .field .hint, .hint{ font-size:11.5px; color:var(--muted2); margin-top:5px; line-height:1.5; }
+  .hint-inline{ font-weight:400; color:var(--muted2); font-size:11px; }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:7px; border:1px solid var(--rule); background:var(--bg2); color:var(--ink); font-size:14px; font-weight:600; padding:9px 16px; border-radius:10px; cursor:pointer; transition:all .18s ease; font-family:var(--sans); text-decoration:none; }
+  .btn:hover{ border-color:var(--accent); color:var(--accent-deep); }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn.primary:hover{ background:var(--accent-deep); border-color:var(--accent-deep); color:#fff; }
+  .btn.ghost{ background:transparent; }
+  .btn.sm{ padding:6px 12px; font-size:13px; }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  details.api-config{ margin-top:20px; border:1px solid var(--rule); border-radius:14px; background:#fffdf9; padding:0 22px; }
+  details.api-config summary{ cursor:pointer; padding:16px 0; font-size:14px; font-weight:700; color:var(--ink); letter-spacing:.01em; list-style:none; display:flex; align-items:center; gap:8px; }
+  details.api-config summary::before{ content:"+"; font-weight:700; color:var(--accent); width:14px; }
+  details.api-config[open] summary::before{ content:"–"; }
+  details.api-config .api-body{ padding:2px 0 20px; }
+  .presets{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:2px 0 14px; }
+  .presets-label{ font-size:12px; color:var(--muted); font-weight:600; }
+
+  .generate-bar{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px; margin-top:18px; padding-top:18px; border-top:1px dashed var(--rule); }
+  .generate-bar .field{ margin-bottom:0; display:flex; align-items:center; gap:8px; }
+  .generate-bar .field label{ margin-bottom:0; }
+  .generate-bar input[type=text]{ width:110px; padding:8px 10px; border:1px solid var(--rule); border-radius:10px; font-size:13px; }
+  .status{ font-size:13px; color:var(--muted); min-height:20px; display:inline-flex; align-items:center; }
+  .status.err{ color:#b3392e; }
+  .status.ok{ color:var(--accent2); }
+
+  /* Before / After */
+  .ba-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:22px; }
+  .ba-panel{ margin:0; }
+  .ba-label{ font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 12px; border-radius:999px; display:inline-block; margin-bottom:9px; color:#fff; }
+  .ba-label.ba-before{ background:#8a7f72; }
+  .ba-label.ba-after{ background:var(--accent); }
+  .ba-frame{ aspect-ratio:4/3; background:#f4efe4; border:1px solid var(--rule); border-radius:14px; overflow:hidden; position:relative; }
+  .ba-frame img{ display:block; width:100%; height:100%; object-fit:contain; }
+  .ba-empty{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted2); font-size:13px; }
+  .ba-cap{ font-size:12px; color:var(--muted2); margin-top:7px; text-align:center; }
+
+  /* save / history */
+  .save-row{ display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; margin-top:22px; padding-top:18px; border-top:1px dashed var(--rule); }
+  .save-row .field{ flex:1 1 200px; margin-bottom:0; }
+  .save-actions{ display:flex; gap:8px; align-items:center; }
+  .save-row > .hint{ flex-basis:100%; margin-top:0; }
+  .history{ margin-top:22px; padding-top:18px; border-top:1px dashed var(--rule); }
+  .history h4{ font-size:13px; margin:0 0 10px; color:var(--ink); }
+  .history ul{ list-style:none; margin:0; padding:0; max-height:220px; overflow:auto; border:1px solid var(--rule); border-radius:12px; background:#fffdf9; }
+  .history li{ padding:9px 13px; border-bottom:1px solid var(--rule); font-size:12px; }
+  .history li:last-child{ border-bottom:none; }
+  .history .h-time{ color:var(--muted2); font-size:11px; margin-bottom:2px; }
+  .history .h-prompt{ color:var(--muted); white-space:pre-wrap; font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:11.5px; line-height:1.5; }
+
   footer{ margin-top:54px; background:var(--footer); border-top:1px solid var(--rule); padding:44px 0 60px; }
   footer h2{ font-family:var(--serif); font-size:20px; margin:0 0 14px; }
   footer ol{ padding-left:20px; margin:0; }
@@ -171,6 +255,9 @@
     .content .points{ grid-template-columns:1fr; }
     .callout ul{ grid-template-columns:1fr; }
     .gallery{ grid-template-columns:repeat(2,1fr); }
+    .studio-grid{ grid-template-columns:1fr; }
+    .ba-grid{ grid-template-columns:1fr; }
+    .topnav{ display:none; }
   }
   @media (max-width:520px){
     .wrap{ padding:0 20px; }
@@ -182,6 +269,7 @@
 <body>
   <div class="topbar">
     <div class="brand"><span class="mark"></span>Spanish Colonial Revival<em>· Field Study</em></div>
+    <nav class="topnav"><a href="#studio"><span data-lang="en">Restyle Studio</span><span data-lang="zh">风格改造工作室</span></a></nav>
     <div class="lang-switch" role="group" aria-label="Language">
       <button class="lang-btn active" data-set="en" type="button">EN</button>
       <button class="lang-btn" data-set="zh" type="button">中文</button>
@@ -364,6 +452,147 @@
       </div>
     </section>
 
+    <!-- 07 Style Restyle Studio -->
+    <section id="studio">
+      <div class="section-head">
+        <span class="num">07</span>
+        <h2><span data-lang="en">Style Restyle Studio</span><span data-lang="zh">风格改造工作室</span></h2>
+        <span class="rule"></span>
+      </div>
+      <p class="palette-intro">
+        <span data-lang="en">Upload your own photo and restyle it into the Spanish Colonial Revival language above — using a <strong>client-side API you supply</strong>. Everything runs in your browser; API keys &amp; tokens are stored locally only and never committed to the repo.</span>
+        <span data-lang="zh">上传你自己的照片，用<strong>你提供的客户端 API</strong>将其改造成上述西班牙殖民复兴风格。所有计算都在浏览器本地完成；API 密钥与令牌仅保存在本地，绝不提交到仓库。</span>
+      </p>
+
+      <div class="studio-card">
+        <div class="studio-grid">
+          <!-- 1. Before upload -->
+          <div class="studio-panel">
+            <h4><span data-lang="en">1 · Upload “Before” image</span><span data-lang="zh">1 · 上传「改造前」图片</span></h4>
+            <div class="dropzone" id="dropzone" role="button" tabindex="0">
+              <input type="file" id="beforeInput" accept="image/*" hidden>
+              <div class="dz-idle" id="dzIdle">
+                <span class="dz-icon">⤓</span>
+                <p class="dz-title"><span data-lang="en">Click or drag an image here</span><span data-lang="zh">点击或拖拽图片到此处</span></p>
+                <p class="dz-sub">JPG · PNG · WebP</p>
+              </div>
+              <img id="beforePreview" class="dz-preview" alt="Before preview" style="display:none">
+            </div>
+            <p class="ba-hint"><span data-lang="en">The original is resized locally into a base64 data URI and sent only to the endpoint you configure below.</span><span data-lang="zh">原图在本地缩成全 base64 数据，仅发送给你在下方配置的接口。</span></p>
+          </div>
+
+          <!-- 2. Prompt -->
+          <div class="studio-panel">
+            <div class="panel-head">
+              <h4><span data-lang="en">2 · Generation prompt</span><span data-lang="zh">2 · 生成 Prompt</span></h4>
+              <div class="ptools">
+                <button class="btn sm ghost" id="resetPrompt" type="button"><span data-lang="en">Reset</span><span data-lang="zh">恢复默认</span></button>
+                <button class="btn sm ghost" id="copyPrompt" type="button"><span data-lang="en">Copy</span><span data-lang="zh">复制</span></button>
+              </div>
+            </div>
+            <div class="field">
+              <textarea id="promptArea" class="mono" spellcheck="false"></textarea>
+              <div class="hint"><span data-lang="en">Edit freely — this is what drives the transformation and is saved for iteration.</span><span data-lang="zh">可自由编辑——它决定改造效果，并会被保存用于迭代。</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. API config -->
+        <details class="api-config" id="apiConfig">
+          <summary><span data-lang="en">3 · Client-side API settings</span><span data-lang="zh">3 · 客户端 API 设置</span></summary>
+          <div class="api-body">
+            <div class="studio-grid">
+              <div class="field">
+                <label for="apiEndpoint">Endpoint (POST URL)</label>
+                <input type="url" id="apiEndpoint" placeholder="https://api.example.com/v1/image" spellcheck="false">
+                <div class="hint"><span data-lang="en">The endpoint must accept an in-browser POST (CORS enabled).</span><span data-lang="zh">接口需允许浏览器跨域（CORS）POST 请求。</span></div>
+              </div>
+              <div class="field">
+                <label for="apiKey">API key</label>
+                <input type="password" id="apiKey" placeholder="sk-…" spellcheck="false">
+                <div class="hint"><span data-lang="en">Sent as <code>Authorization: Bearer &lt;key&gt;</code>. Stored only in this browser.</span><span data-lang="zh">以 <code>Authorization: Bearer &lt;key&gt;</code> 发送，仅存于本浏览器。</span></div>
+              </div>
+            </div>
+            <div class="presets">
+              <span class="presets-label"><span data-lang="en">Examples:</span><span data-lang="zh">示例：</span></span>
+              <button class="btn sm ghost" data-preset="generic" type="button">Generic</button>
+              <button class="btn sm ghost" data-preset="openai-json" type="button">OpenAI</button>
+              <button class="btn sm ghost" data-preset="stability" type="button">Stability</button>
+            </div>
+            <div class="field">
+              <label for="bodyTemplate">Request body (JSON) — placeholders: <code>{{prompt}}</code> <code>{{image}}</code> <code>{{size}}</code></label>
+              <textarea id="bodyTemplate" class="mono" spellcheck="false"></textarea>
+              <div class="hint"><span data-lang="en"><code>{{prompt}}</code> is replaced by the prompt text; <code>{{image}}</code> by the base64 data URI; <code>{{size}}</code> by the size value. The response is auto-parsed for a base64 image, an image URL, or a raw image body.</span><span data-lang="zh"><code>{{prompt}}</code> 会被替换为 prompt 文本，<code>{{image}}</code> 替换为 base64 图片数据，<code>{{size}}</code> 替换为尺寸值。响应会自动解析 base64 图片、图片 URL 或原始图片数据。</span></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- 4. Generate -->
+        <div class="generate-bar">
+          <div class="field">
+            <label for="sizeInput">Size</label>
+            <input type="text" id="sizeInput" value="1024x1024">
+          </div>
+          <button class="btn primary" id="generateBtn" type="button"><span data-lang="en">Generate “After”</span><span data-lang="zh">生成「改造后」图片</span></button>
+          <span class="status" id="status" role="status"></span>
+        </div>
+
+        <!-- 5. Before vs After -->
+        <div class="ba-grid">
+          <figure class="ba-panel">
+            <div class="ba-label ba-before">Before · <span data-lang="en">Original</span><span data-lang="zh">原始</span></div>
+            <div class="ba-frame">
+              <img id="beforeDisplay" alt="Before" style="display:none">
+              <div class="ba-empty" id="beforeEmpty"><span data-lang="en">Upload an image to begin</span><span data-lang="zh">上传图片开始</span></div>
+            </div>
+            <figcaption class="ba-cap"><span data-lang="en">Original photo</span><span data-lang="zh">原始照片</span></figcaption>
+          </figure>
+          <figure class="ba-panel">
+            <div class="ba-label ba-after">After · <span data-lang="en">Restyled</span><span data-lang="zh">改造后</span></div>
+            <div class="ba-frame">
+              <img id="afterDisplay" alt="After" style="display:none">
+              <div class="ba-empty" id="afterEmpty"><span data-lang="en">Generated result appears here</span><span data-lang="zh">生成结果将在此显示</span></div>
+            </div>
+            <figcaption class="ba-cap">
+              <span data-lang="en">Spanish Colonial Revival output</span><span data-lang="zh">西班牙殖民复兴风格输出</span>
+              <button class="btn sm" id="downloadAfter" type="button" style="margin-left:8px" title="Download">⤓</button>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- 6. Save prompt -->
+        <div class="save-row">
+          <div class="field">
+            <label for="ghRepo">GitHub repo <span class="hint-inline">owner/repo</span></label>
+            <input type="text" id="ghRepo" placeholder="sharkroman/nz-campervan-route" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="ghBranch">Branch</label>
+            <input type="text" id="ghBranch" placeholder="main" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="ghPath">File path</label>
+            <input type="text" id="ghPath" value="newzealand/prompts/spanish-colonial-revival-style.md" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="ghToken">GitHub token</label>
+            <input type="password" id="ghToken" placeholder="ghp_…" spellcheck="false">
+          </div>
+          <div class="save-actions">
+            <button class="btn" id="saveGithub" type="button"><span data-lang="en">Save prompt to GitHub</span><span data-lang="zh">保存 prompt 到 GitHub</span></button>
+            <button class="btn ghost" id="downloadPrompts" type="button"><span data-lang="en">Download .md</span><span data-lang="zh">下载 .md</span></button>
+          </div>
+          <div class="hint"><span data-lang="en">“Save” appends a dated entry to the file so iterations accumulate. Requires a token with repo-write scope — it stays only in this browser.</span><span data-lang="zh">「保存」会向文件追加一条带日期的记录，便于持续迭代。需要具备 repo 写入权限的 token——仅保存在本浏览器。</span></div>
+        </div>
+
+        <!-- History -->
+        <div class="history" id="historyWrap" style="display:none">
+          <h4><span data-lang="en">Prompt iterations (this browser)</span><span data-lang="zh">Prompt 迭代记录（本浏览器）</span></h4>
+          <ul id="historyList"></ul>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -409,6 +638,441 @@
       zoomable.forEach(function(img){ img.addEventListener('click', function(){ open(img.getAttribute('src')); }); });
       lb.addEventListener('click', close);
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
+  </script>
+  <script>
+    (function(){
+      var LS_KEY = 'scr-studio-v1';
+
+      // ---- Default style prompt (mirrors the committed prompt file) ----
+      var DEFAULT_PROMPT = [
+"Restyle this image in the authentic Spanish Colonial Revival (Southern California / Santa Barbara) style while preserving the original composition, layout, perspective and subject.",
+"",
+"ARCHITECTURE:",
+"- Low, horizontal, asymmetrical massing with thick, smooth-troweled stucco walls in warm white / cream (#F4E8D6)",
+"- Flat or low-pitched roof with red terracotta clay barrel tile and exposed rafter tails",
+"- Semicircular arched entries, arcades, windows and loggias",
+"- Deeply recessed windows and doors with dark carved-wood frames",
+"- Hand-forged black wrought-iron grilles, balconies, railings and lanterns",
+"- Bell gable, tower or chimney silhouette accents",
+"- Azulejo glazed-tile insets in blue (#2F5D7C) or sage green (#6E7F5C) as restrained accents",
+"- Natural stone / granite grounding at bases, steps, thresholds and fountains",
+"",
+"LANDSCAPE:",
+"- Mediterranean drought-tolerant planting: olive trees, Italian cypress, citrus, bougainvillea, lavender, rosemary, agave and succulents",
+"- Terracotta pavers, decomposed-granite paths and saltillo-tile terraces",
+"- A tiled courtyard fountain or reflecting pool",
+"",
+"COLOR PALETTE: warm white #F4E8D6 · terracotta #C1502E · deep wood #5B4030 · azulejo blue #2F5D7C · sage green #6E7F5C · wrought-iron black #2A2724",
+"",
+"Preserve the original structure, wall openings, geometry and any people or objects; change only style, materials, colors, finishes and planting. Warm Mediterranean afternoon sunlight, soft shadows, photorealistic, high detail, professional architectural visualization."
+      ].join("\n");
+
+      var DEFAULT_BODY = '{\n  "model": "your-model",\n  "prompt": "{{prompt}}",\n  "image": "{{image}}",\n  "size": "{{size}}"\n}';
+
+      var PRESETS = {
+        generic: { endpoint: '', body: DEFAULT_BODY },
+        'openai-json': {
+          endpoint: 'https://api.openai.com/v1/images/edits',
+          body: JSON.stringify({ model: 'dall-e-2', prompt: '{{prompt}}', image: '{{image}}', n: 1, size: '{{size}}' }, null, 2)
+        },
+        stability: {
+          endpoint: 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image',
+          body: JSON.stringify({ text_prompts: [{ text: '{{prompt}}' }], init_image: '{{image}}', init_image_mode: 'IMAGE_STRENGTH', image_strength: 0.6, cfg_scale: 7, width: 1024, height: 1024, samples: 1, steps: 30 }, null, 2)
+        }
+      };
+
+      var state = {};
+      try { state = JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch(e){ state = {}; }
+      function saveState(){ try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch(e){} }
+
+      // default state
+      if(state.prompt === undefined || state.prompt === null || state.prompt === '') state.prompt = DEFAULT_PROMPT;
+      if(!state.bodyTemplate) state.bodyTemplate = DEFAULT_BODY;
+      if(!state.branch) state.branch = 'main';
+      if(!state.path) state.path = 'newzealand/prompts/spanish-colonial-revival-style.md';
+      if(!state.size) state.size = '1024x1024';
+      if(!Array.isArray(state.history)) state.history = [];
+
+      // ---- DOM ----
+      var dropzone = document.getElementById('dropzone');
+      var beforeInput = document.getElementById('beforeInput');
+      var beforePreview = document.getElementById('beforePreview');
+      var dzIdle = document.getElementById('dzIdle');
+      var promptArea = document.getElementById('promptArea');
+      var apiEndpoint = document.getElementById('apiEndpoint');
+      var apiKey = document.getElementById('apiKey');
+      var bodyTemplateEl = document.getElementById('bodyTemplate');
+      var sizeInput = document.getElementById('sizeInput');
+      var generateBtn = document.getElementById('generateBtn');
+      var statusEl = document.getElementById('status');
+      var beforeDisplay = document.getElementById('beforeDisplay');
+      var beforeEmpty = document.getElementById('beforeEmpty');
+      var afterDisplay = document.getElementById('afterDisplay');
+      var afterEmpty = document.getElementById('afterEmpty');
+      var downloadAfterBtn = document.getElementById('downloadAfter');
+      var resetPromptBtn = document.getElementById('resetPrompt');
+      var copyPromptBtn = document.getElementById('copyPrompt');
+      var saveGithubBtn = document.getElementById('saveGithub');
+      var downloadPromptsBtn = document.getElementById('downloadPrompts');
+      var ghRepo = document.getElementById('ghRepo');
+      var ghBranch = document.getElementById('ghBranch');
+      var ghPath = document.getElementById('ghPath');
+      var ghToken = document.getElementById('ghToken');
+      var historyWrap = document.getElementById('historyWrap');
+      var historyList = document.getElementById('historyList');
+
+      // populate
+      promptArea.value = state.prompt;
+      apiEndpoint.value = state.endpoint || '';
+      apiKey.value = state.key || '';
+      bodyTemplateEl.value = state.bodyTemplate;
+      sizeInput.value = state.size;
+      ghRepo.value = state.repo || '';
+      ghBranch.value = state.branch;
+      ghPath.value = state.path;
+      ghToken.value = state.token || '';
+
+      var beforeDataURL = null;
+      var lastAfter = null;
+
+      function setStatus(msg, kind){
+        statusEl.textContent = msg;
+        statusEl.className = 'status' + (kind ? ' ' + kind : '');
+      }
+
+      function persist(){
+        state.prompt = promptArea.value;
+        state.endpoint = apiEndpoint.value;
+        state.key = apiKey.value;
+        state.bodyTemplate = bodyTemplateEl.value;
+        state.size = sizeInput.value;
+        state.repo = ghRepo.value;
+        state.branch = ghBranch.value;
+        state.path = ghPath.value;
+        state.token = ghToken.value;
+        saveState();
+      }
+
+      function loadImage(src){ return new Promise(function(res, rej){ var im = new Image(); im.onload = function(){ res(im); }; im.onerror = rej; im.src = src; }); }
+
+      function fileToDataURL(file){
+        return new Promise(function(resolve){
+          var r = new FileReader();
+          r.onload = function(){
+            var orig = r.result;
+            var im = new Image();
+            im.onload = function(){
+              try{
+                var MAX = 1536;
+                var w = im.naturalWidth, h = im.naturalHeight;
+                var scale = Math.min(1, MAX / Math.max(w, h));
+                var nw = Math.max(1, Math.round(w * scale)), nh = Math.max(1, Math.round(h * scale));
+                var c = document.createElement('canvas');
+                c.width = nw; c.height = nh;
+                var ctx = c.getContext('2d');
+                ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, nw, nh);
+                ctx.drawImage(im, 0, 0, nw, nh);
+                resolve(c.toDataURL('image/jpeg', 0.9));
+              }catch(e){ resolve(orig); }
+            };
+            im.onerror = function(){ resolve(orig); };
+            im.src = orig;
+          };
+          r.onerror = function(){ resolve(null); };
+          r.readAsDataURL(file);
+        });
+      }
+
+      function handleFile(file){
+        if(!file) return;
+        if(file.type && file.type.indexOf('image/') !== 0){ setStatus('Please choose an image file.', 'err'); return; }
+        fileToDataURL(file).then(function(url){
+          if(!url){ setStatus('Could not read the image.', 'err'); return; }
+          beforeDataURL = url;
+          beforePreview.src = url;
+          beforePreview.style.display = 'block';
+          dzIdle.style.display = 'none';
+          beforeDisplay.src = url;
+          beforeDisplay.style.display = 'block';
+          beforeEmpty.style.display = 'none';
+          setStatus('Image loaded.', 'ok');
+        });
+      }
+
+      // upload events
+      dropzone.addEventListener('click', function(){ beforeInput.click(); });
+      dropzone.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); beforeInput.click(); } });
+      beforeInput.addEventListener('change', function(){ handleFile(beforeInput.files && beforeInput.files[0]); });
+      ['dragover','dragenter'].forEach(function(ev){
+        dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.add('drag'); });
+      });
+      ['dragleave','drop'].forEach(function(ev){
+        dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); });
+      });
+      dropzone.addEventListener('drop', function(e){ handleFile(e.dataTransfer.files && e.dataTransfer.files[0]); });
+
+      // prompt tools
+      resetPromptBtn.addEventListener('click', function(){ promptArea.value = DEFAULT_PROMPT; persist(); });
+      copyPromptBtn.addEventListener('click', function(){
+        navigator.clipboard && navigator.clipboard.writeText(promptArea.value).then(function(){
+          setStatus('Prompt copied.', 'ok');
+        }, function(){ setStatus('Copy failed.', 'err'); });
+      });
+
+      // presets
+      var presetBtns = document.querySelectorAll('[data-preset]');
+      presetBtns.forEach(function(b){
+        b.addEventListener('click', function(){
+          var p = PRESETS[b.getAttribute('data-preset')];
+          if(!p) return;
+          if(p.endpoint) apiEndpoint.value = p.endpoint;
+          bodyTemplateEl.value = p.body;
+          persist();
+          setStatus('Preset applied — ' + b.getAttribute('data-preset'), 'ok');
+        });
+      });
+
+      // ---- response image extraction ----
+      function extractImage(resp, rawText){
+        var candidates = [];
+        function push(v){ if(typeof v === 'string' && v.trim()) candidates.push(v.trim()); }
+        function probe(obj){
+          if(!obj || typeof obj !== 'object') return;
+          ['b64_json','url','base64','image','image_url','url'].forEach(function(k){ if(typeof obj[k] === 'string') push(obj[k]); });
+        }
+        if(resp){
+          if(Array.isArray(resp.data)) resp.data.forEach(probe);
+          if(Array.isArray(resp.artifacts)) resp.artifacts.forEach(probe);
+          var out = resp.output;
+          if(typeof out === 'string') push(out);
+          else if(Array.isArray(out)) out.forEach(function(o){ if(typeof o === 'string') push(o); else probe(o); });
+          else probe(out);
+          ['image','images','result','b64_json','base64','generated_image','image_url'].forEach(function(k){
+            var v = resp[k];
+            if(typeof v === 'string') push(v);
+            else if(Array.isArray(v)) v.forEach(function(o){ if(typeof o === 'string') push(o); else probe(o); });
+            else if(v && typeof v === 'object') probe(v);
+          });
+        }
+        // raw text scan
+        var m1 = rawText.match(/data:image\/(?:png|jpeg|jpg|webp|gif);base64,[A-Za-z0-9+\/=]+/g);
+        if(m1) m1.forEach(push);
+        var m2 = rawText.match(/https?:\/\/[^\s"'\\]+\.(?:png|jpe?g|webp|gif)(?:\?[^\s"'\\]*)?/gi);
+        if(m2) m2.forEach(push);
+
+        for(var i = 0; i < candidates.length; i++){
+          var c = candidates[i];
+          if(/^data:image\//i.test(c)) return c;
+          if(c.length > 300 && /^[A-Za-z0-9+\/=-]+$/.test(c)){
+            // raw base64 -> guess type
+            var prefix = 'data:image/png;base64,';
+            try{
+              var bin = atob(c);
+              if(bin.charCodeAt(0) === 0xFF && bin.charCodeAt(1) === 0xD8) prefix = 'data:image/jpeg;base64,';
+            }catch(e){}
+            return prefix + c;
+          }
+          if(/^https?:\/\//i.test(c) && /\.(png|jpe?g|webp|gif)(\?|$)/i.test(c)) return c;
+        }
+        return null;
+      }
+
+      // ---- generate ----
+      async function generate(){
+        if(!beforeDataURL){ setStatus('Please upload a "Before" image first.', 'err'); return; }
+        var endpoint = apiEndpoint.value.trim();
+        var promptTxt = promptArea.value.trim();
+        if(!endpoint){ setStatus('Please set the API endpoint.', 'err'); return; }
+        if(!promptTxt){ setStatus('Prompt is empty.', 'err'); return; }
+        var size = sizeInput.value.trim() || '1024x1024';
+
+        var bodyStr = bodyTemplateEl.value
+          .split('{{prompt}}').join(promptTxt)
+          .split('{{image}}').join(beforeDataURL)
+          .split('{{size}}').join(size);
+
+        try { JSON.parse(bodyStr); } catch(e){ setStatus('Request body is not valid JSON: ' + e.message, 'err'); return; }
+
+        setStatus('Generating…', '');
+        generateBtn.disabled = true;
+        try{
+          var headers = { 'Content-Type': 'application/json' };
+          var key = apiKey.value.trim();
+          if(key) headers['Authorization'] = 'Bearer ' + key;
+
+          var res = await fetch(endpoint, { method: 'POST', headers: headers, body: bodyStr });
+          var ct = (res.headers.get('content-type') || '').toLowerCase();
+
+          if(!res.ok){
+            var errText = '';
+            try { errText = await res.text(); } catch(e){}
+            throw new Error('HTTP ' + res.status + ' — ' + (errText.slice(0, 300) || res.statusText));
+          }
+
+          var img;
+          if(ct.indexOf('image/') === 0){
+            var blob = await res.blob();
+            img = URL.createObjectURL(blob);
+          } else {
+            var rawText = await res.text();
+            var resp = null;
+            try { resp = JSON.parse(rawText); } catch(e){}
+            img = extractImage(resp, rawText);
+            if(!img) throw new Error('No image found in the response.');
+          }
+
+          lastAfter = img;
+          afterDisplay.src = img;
+          afterDisplay.style.display = 'block';
+          afterEmpty.style.display = 'none';
+          setStatus('Done.', 'ok');
+          // save prompt for iteration
+          state.history.push({ t: new Date().toISOString(), prompt: promptTxt });
+          if(state.history.length > 50) state.history = state.history.slice(-50);
+          persist();
+          renderHistory();
+        }catch(e){
+          setStatus(e.message, 'err');
+        }finally{
+          generateBtn.disabled = false;
+        }
+      }
+
+      generateBtn.addEventListener('click', generate);
+
+      // ---- download after ----
+      function dataURItoBlob(dataURI){
+        var m = dataURI.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.*)$/);
+        if(!m) return null;
+        var bin = atob(m[2]), arr = new Uint8Array(bin.length);
+        for(var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+        return new Blob([arr], { type: m[1] });
+      }
+      async function downloadAfter(){
+        if(!lastAfter) return;
+        try{
+          var blob;
+          if(lastAfter.indexOf('data:') === 0) blob = dataURItoBlob(lastAfter);
+          else { var r = await fetch(lastAfter); blob = await r.blob(); }
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url; a.download = 'after-spanish-colonial.jpg';
+          document.body.appendChild(a); a.click();
+          setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
+        }catch(e){ window.open(lastAfter, '_blank'); }
+      }
+      downloadAfterBtn.addEventListener('click', downloadAfter);
+
+      // ---- history ----
+      function renderHistory(){
+        var h = state.history || [];
+        if(!h.length){ historyWrap.style.display = 'none'; return; }
+        historyWrap.style.display = 'block';
+        historyList.innerHTML = '';
+        h.slice().reverse().forEach(function(it){
+          var li = document.createElement('li');
+          var t = document.createElement('div');
+          t.className = 'h-time';
+          t.textContent = it.t;
+          var p = document.createElement('div');
+          p.className = 'h-prompt';
+          p.textContent = it.prompt.length > 600 ? it.prompt.slice(0, 600) + '…' : it.prompt;
+          li.appendChild(t); li.appendChild(p);
+          historyList.appendChild(li);
+        });
+      }
+
+      // ---- markdown export ----
+      function buildMarkdown(){
+        var lines = ['# Spanish Colonial Revival — Style Prompt', '', '> Field study · downtown Los Angeles · Santa Barbara renovation reference', ''];
+        lines.push('## Current prompt', '', '```');
+        lines.push(promptArea.value);
+        lines.push('```', '');
+        var h = state.history || [];
+        if(h.length){
+          lines.push('## Iteration log (' + h.length + ')', '');
+          h.forEach(function(it, idx){
+            lines.push('### ' + (idx + 1) + ' · ' + it.t, '', '```');
+            lines.push(it.prompt);
+            lines.push('```', '');
+          });
+        }
+        return lines.join('\n');
+      }
+      function downloadText(name, text){
+        var blob = new Blob(['\ufeff' + text], { type: 'text/markdown;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url; a.download = name;
+        document.body.appendChild(a); a.click();
+        setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
+      }
+      downloadPromptsBtn.addEventListener('click', function(){
+        downloadText(ghPath.value.split('/').pop() || 'prompts.md', buildMarkdown());
+        setStatus('Markdown downloaded.', 'ok');
+      });
+
+      // ---- GitHub save (append iteration) ----
+      function b64Encode(str){ return btoa(unescape(encodeURIComponent(str))); }
+      function b64Decode(str){ return decodeURIComponent(escape(atob(str))); }
+
+      saveGithubBtn.addEventListener('click', async function(){
+        var repo = ghRepo.value.trim();
+        var branch = ghBranch.value.trim() || 'main';
+        var path = ghPath.value.trim();
+        var token = ghToken.value.trim();
+        var promptTxt = promptArea.value.trim();
+        if(!repo || !path || !token){ setStatus('GitHub repo, path and token are all required.', 'err'); return; }
+        if(!promptTxt){ setStatus('Prompt is empty.', 'err'); return; }
+
+        var entry = '\n\n---\n\n## Iteration — ' + new Date().toISOString() + '\n\n```\n' + promptTxt + '\n```\n';
+        var url = 'https://api.github.com/repos/' + repo + '/contents/' + path;
+        var headers = {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        };
+        saveGithubBtn.disabled = true;
+        setStatus('Saving to GitHub…', '');
+        try{
+          var existing = '';
+          var sha = null;
+          var getRes = await fetch(url, { method: 'GET', headers: headers });
+          if(getRes.status === 200){
+            var gj = await getRes.json();
+            sha = gj.sha;
+            existing = b64Decode(gj.content.replace(/\s/g, ''));
+          } else if(getRes.status === 404){
+            existing = '# Spanish Colonial Revival — Style Prompt\n\n> Iteration log (appended from the Restyle Studio).\n';
+          } else {
+            var ge = await getRes.text();
+            throw new Error('GitHub GET failed: ' + getRes.status + ' ' + ge.slice(0, 200));
+          }
+
+          var payload = { message: 'Add style prompt iteration', content: b64Encode(existing + entry), branch: branch };
+          if(sha) payload.sha = sha;
+
+          var putRes = await fetch(url, { method: 'PUT', headers: headers, body: JSON.stringify(payload) });
+          if(putRes.status >= 200 && putRes.status < 300){
+            setStatus('Prompt saved to GitHub: ' + repo + '/' + path, 'ok');
+          } else {
+            var pe = await putRes.text();
+            throw new Error('GitHub PUT failed: ' + putRes.status + ' ' + pe.slice(0, 300));
+          }
+        }catch(e){
+          setStatus(e.message, 'err');
+        }finally{
+          saveGithubBtn.disabled = false;
+        }
+      });
+
+      // persist on edit
+      [promptArea, apiEndpoint, apiKey, bodyTemplateEl, sizeInput, ghRepo, ghBranch, ghPath, ghToken].forEach(function(el){
+        el.addEventListener('input', persist);
+      });
+
+      renderHistory();
     })();
   </script>
 </body>
