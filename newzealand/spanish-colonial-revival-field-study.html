@@ -973,6 +973,17 @@
       }
 
       // ---- generate ----
+      function jsonEscape(s){
+        return String(s)
+          .replace(/\\/g, '\\\\')
+          .replace(/"/g, '\\"')
+          .replace(/\n/g, '\\n')
+          .replace(/\r/g, '\\r')
+          .replace(/\t/g, '\\t')
+          .replace(/\u0008/g, '\\b')
+          .replace(/\f/g, '\\f');
+      }
+
       async function generate(){
         if(!beforeDataURL){ setStatus('Please upload a "Before" image first.', 'err'); return; }
         var endpoint = apiEndpoint.value.trim();
@@ -982,9 +993,9 @@
         var size = sizeInput.value.trim() || '1024x1024';
 
         var bodyStr = bodyTemplateEl.value
-          .split('{{prompt}}').join(promptTxt)
-          .split('{{image}}').join(beforeDataURL)
-          .split('{{size}}').join(size);
+          .split('{{prompt}}').join(jsonEscape(promptTxt))
+          .split('{{image}}').join(jsonEscape(beforeDataURL))
+          .split('{{size}}').join(jsonEscape(size));
 
         try { JSON.parse(bodyStr); } catch(e){ setStatus('Request body is not valid JSON: ' + e.message, 'err'); return; }
 
