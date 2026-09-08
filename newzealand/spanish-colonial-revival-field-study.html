@@ -479,6 +479,7 @@
                 <p class="dz-sub">JPG · PNG · WebP</p>
               </div>
               <img id="beforePreview" class="dz-preview" alt="Before preview" style="display:none">
+              <p class="dz-sub" id="dzChange" style="display:none"><span data-lang="en">Click or drop a new image to change it</span><span data-lang="zh">点击或拖入新图片即可更换</span></p>
             </div>
             <p class="ba-hint"><span data-lang="en">The original is resized locally into a base64 data URI and sent only to the endpoint you configure below.</span><span data-lang="zh">原图在本地缩成全 base64 数据，仅发送给你在下方配置的接口。</span></p>
           </div>
@@ -725,6 +726,7 @@
       var beforeInput = document.getElementById('beforeInput');
       var beforePreview = document.getElementById('beforePreview');
       var dzIdle = document.getElementById('dzIdle');
+      var dzChange = document.getElementById('dzChange');
       var promptArea = document.getElementById('promptArea');
       var apiEndpoint = document.getElementById('apiEndpoint');
       var apiKey = document.getElementById('apiKey');
@@ -822,6 +824,7 @@
           beforePreview.src = url;
           beforePreview.style.display = 'block';
           dzIdle.style.display = 'none';
+          dzChange.style.display = 'block';
           beforeDisplay.src = url;
           beforeDisplay.style.display = 'block';
           beforeEmpty.style.display = 'none';
@@ -829,17 +832,50 @@
         });
       }
 
-      // upload events
-      dropzone.addEventListener('click', function(){ beforeInput.click(); });
-      dropzone.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); beforeInput.click(); } });
-      beforeInput.addEventListener('change', function(){ handleFile(beforeInput.files && beforeInput.files[0]); });
-      ['dragover','dragenter'].forEach(function(ev){
-        dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.add('drag'); });
+      // ---- upload + drag-drop ----
+      function openFilePicker(e){
+        // Ignore the synthetic click event that bubbles back up from input.click(),
+        // otherwise we'd recurse and stack-overflow (input is a child of the dropzone).
+        if(e && e.target === beforeInput) return;
+        beforeInput.click();
+      }
+      dropzone.addEventListener('click', openFilePicker);
+      dropzone.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openFilePicker(e); }
       });
-      ['dragleave','drop'].forEach(function(ev){
-        dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); });
+      beforeInput.addEventListener('change', function(){
+        handleFile(beforeInput.files && beforeInput.files[0]);
+        beforeInput.value = ''; // allow re-selecting the same file
       });
-      dropzone.addEventListener('drop', function(e){ handleFile(e.dataTransfer.files && e.dataTransfer.files[0]); });
+
+      // depth counter so the highlight survives moving over child elements
+      var dragDepth = 0;
+      dropzone.addEventListener('dragenter', function(e){
+        e.preventDefault(); e.stopPropagation();
+        dragDepth++;
+        dropzone.classList.add('drag');
+      });
+      dropzone.addEventListener('dragover', function(e){
+        e.preventDefault(); e.stopPropagation();
+        if(e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+      });
+      dropzone.addEventListener('dragleave', function(e){
+        e.preventDefault(); e.stopPropagation();
+        dragDepth = Math.max(0, dragDepth - 1);
+        if(dragDepth === 0) dropzone.classList.remove('drag');
+      });
+      dropzone.addEventListener('drop', function(e){
+        e.preventDefault(); e.stopPropagation();
+        dragDepth = 0;
+        dropzone.classList.remove('drag');
+        var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        handleFile(f);
+      });
+
+      // Stop the browser from navigating away / opening the file in place
+      // when a file is dropped anywhere outside the dropzone.
+      window.addEventListener('dragover', function(e){ e.preventDefault(); e.dataTransfer.dropEffect = 'none'; });
+      window.addEventListener('drop', function(e){ e.preventDefault(); });
 
       // prompt tools
       resetPromptBtn.addEventListener('click', function(){ promptArea.value = DEFAULT_PROMPT; persist(); });
