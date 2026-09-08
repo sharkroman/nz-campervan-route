@@ -181,6 +181,8 @@
   .field textarea{ min-height:150px; }
   .field input.mono, .field textarea.mono{ font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:12.5px; }
   .field input:focus, .field textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,87,.13); }
+  .field select{ width:100%; padding:10px 12px; border:1px solid var(--rule); border-radius:10px; font-size:13.5px; font-family:var(--sans); color:var(--ink); background:#fff; }
+  .field select:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,87,.13); }
   .field .hint, .hint{ font-size:11.5px; color:var(--muted2); margin-top:5px; line-height:1.5; }
   .hint-inline{ font-weight:400; color:var(--muted2); font-size:11px; }
 
@@ -510,14 +512,25 @@
               <div class="field">
                 <label for="apiKey">API key</label>
                 <input type="password" id="apiKey" placeholder="sk-…" spellcheck="false">
-                <div class="hint"><span data-lang="en">Sent as <code>Authorization: Bearer &lt;key&gt;</code>. Stored only in this browser.</span><span data-lang="zh">以 <code>Authorization: Bearer &lt;key&gt;</code> 发送，仅存于本浏览器。</span></div>
+                <div class="hint"><span data-lang="en">Stored only in this browser. The <code>Authorization</code> prefix is chosen below.</span><span data-lang="zh">仅存于本浏览器。<code>Authorization</code> 前缀在下方选择。</span></div>
               </div>
+            </div>
+            <div class="field">
+              <label for="authScheme"><span data-lang="en">Authorization header</span><span data-lang="zh">授权头前缀</span></label>
+              <select id="authScheme">
+                <option value="Bearer">Bearer &lt;key&gt; — OpenAI · OpenRouter · Stability</option>
+                <option value="Key">Key &lt;key&gt; — fal.ai</option>
+                <option value="">None</option>
+              </select>
+              <div class="hint"><span data-lang="en">The prefix used with your API key in the <code>Authorization</code> header (presets set this automatically).</span><span data-lang="zh">API 密钥在 <code>Authorization</code> 头中使用的前缀（预设会自动设置）。</span></div>
             </div>
             <div class="presets">
               <span class="presets-label"><span data-lang="en">Examples:</span><span data-lang="zh">示例：</span></span>
               <button class="btn sm ghost" data-preset="generic" type="button">Generic</button>
               <button class="btn sm ghost" data-preset="openai-json" type="button">OpenAI</button>
               <button class="btn sm ghost" data-preset="stability" type="button">Stability</button>
+              <button class="btn sm ghost" data-preset="fal" type="button">fal.ai</button>
+              <button class="btn sm ghost" data-preset="openrouter" type="button">OpenRouter</button>
             </div>
             <div class="field">
               <label for="bodyTemplate">Request body (JSON) — placeholders: <code>{{prompt}}</code> <code>{{image}}</code> <code>{{size}}</code></label>
@@ -671,14 +684,26 @@
       var DEFAULT_BODY = '{\n  "model": "your-model",\n  "prompt": "{{prompt}}",\n  "image": "{{image}}",\n  "size": "{{size}}"\n}';
 
       var PRESETS = {
-        generic: { endpoint: '', body: DEFAULT_BODY },
+        generic: { endpoint: '', body: DEFAULT_BODY, auth: 'Bearer' },
         'openai-json': {
           endpoint: 'https://api.openai.com/v1/images/edits',
+          auth: 'Bearer',
           body: JSON.stringify({ model: 'dall-e-2', prompt: '{{prompt}}', image: '{{image}}', n: 1, size: '{{size}}' }, null, 2)
         },
         stability: {
           endpoint: 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image',
+          auth: 'Bearer',
           body: JSON.stringify({ text_prompts: [{ text: '{{prompt}}' }], init_image: '{{image}}', init_image_mode: 'IMAGE_STRENGTH', image_strength: 0.6, cfg_scale: 7, width: 1024, height: 1024, samples: 1, steps: 30 }, null, 2)
+        },
+        fal: {
+          endpoint: 'https://queue.fal.run/fal-ai/flux/dev/image-to-image',
+          auth: 'Key',
+          body: JSON.stringify({ prompt: '{{prompt}}', image_url: '{{image}}', image_size: 'square_hd', strength: 0.72, num_images: 1, output_format: 'png', enable_safety_checker: true }, null, 2)
+        },
+        openrouter: {
+          endpoint: 'https://openrouter.ai/api/v1/images/generations',
+          auth: 'Bearer',
+          body: JSON.stringify({ model: 'openai/gpt-image-1', prompt: '{{prompt}}', n: 1, size: '{{size}}' }, null, 2)
         }
       };
 
@@ -692,6 +717,7 @@
       if(!state.branch) state.branch = 'main';
       if(!state.path) state.path = 'newzealand/prompts/spanish-colonial-revival-style.md';
       if(!state.size) state.size = '1024x1024';
+      if(!state.authScheme) state.authScheme = 'Bearer';
       if(!Array.isArray(state.history)) state.history = [];
 
       // ---- DOM ----
@@ -702,6 +728,7 @@
       var promptArea = document.getElementById('promptArea');
       var apiEndpoint = document.getElementById('apiEndpoint');
       var apiKey = document.getElementById('apiKey');
+      var authScheme = document.getElementById('authScheme');
       var bodyTemplateEl = document.getElementById('bodyTemplate');
       var sizeInput = document.getElementById('sizeInput');
       var generateBtn = document.getElementById('generateBtn');
@@ -726,6 +753,7 @@
       promptArea.value = state.prompt;
       apiEndpoint.value = state.endpoint || '';
       apiKey.value = state.key || '';
+      authScheme.value = state.authScheme;
       bodyTemplateEl.value = state.bodyTemplate;
       sizeInput.value = state.size;
       ghRepo.value = state.repo || '';
@@ -745,6 +773,7 @@
         state.prompt = promptArea.value;
         state.endpoint = apiEndpoint.value;
         state.key = apiKey.value;
+        state.authScheme = authScheme.value;
         state.bodyTemplate = bodyTemplateEl.value;
         state.size = sizeInput.value;
         state.repo = ghRepo.value;
@@ -827,6 +856,7 @@
           var p = PRESETS[b.getAttribute('data-preset')];
           if(!p) return;
           if(p.endpoint) apiEndpoint.value = p.endpoint;
+          if(p.auth) authScheme.value = p.auth;
           bodyTemplateEl.value = p.body;
           persist();
           setStatus('Preset applied — ' + b.getAttribute('data-preset'), 'ok');
@@ -873,9 +903,37 @@
             }catch(e){}
             return prefix + c;
           }
-          if(/^https?:\/\//i.test(c) && /\.(png|jpe?g|webp|gif)(\?|$)/i.test(c)) return c;
+          if(/^https?:\/\//i.test(c) && (/\.(png|jpe?g|webp|gif)(\?|$)/i.test(c) || /fal\.media/i.test(c))) return c;
         }
         return null;
+      }
+
+      // ---- fal.ai queue polling ----
+      async function pollFalQueue(resp){
+        var statusUrl = resp.status_url || resp.statusURL;
+        var resultUrl = resp.response_url || resp.responseURL;
+        if(!statusUrl) return null;
+        var key = apiKey.value.trim();
+        var scheme = authScheme.value.trim();
+        var headers = {};
+        if(key && scheme) headers['Authorization'] = scheme + ' ' + key;
+        var deadline = Date.now() + 180000;
+        while(Date.now() < deadline){
+          await new Promise(function(r){ setTimeout(r, 2500); });
+          var sr = await fetch(statusUrl, { headers: headers });
+          var sj = null;
+          try { sj = await sr.json(); } catch(e){ return null; }
+          if(sj && (sj.status === 'COMPLETED' || sj.status === 'SUCCEEDED')){
+            var rr = await fetch(resultUrl || statusUrl, { headers: headers });
+            var rj = null;
+            try { rj = await rr.json(); } catch(e){ return null; }
+            return extractImage(rj, JSON.stringify(rj));
+          }
+          if(sj && (sj.status === 'FAILED' || sj.status === 'ERROR' || sj.status === 'CANCELLED' || sj.status === 'FAILURE')){
+            throw new Error('fal.ai request ' + sj.status + (sj.error ? ' — ' + (sj.error.message || sj.error) : ''));
+          }
+        }
+        throw new Error('fal.ai request timed out after 3 minutes.');
       }
 
       // ---- generate ----
@@ -899,7 +957,8 @@
         try{
           var headers = { 'Content-Type': 'application/json' };
           var key = apiKey.value.trim();
-          if(key) headers['Authorization'] = 'Bearer ' + key;
+          var scheme = authScheme.value.trim();
+          if(key && scheme) headers['Authorization'] = scheme + ' ' + key;
 
           var res = await fetch(endpoint, { method: 'POST', headers: headers, body: bodyStr });
           var ct = (res.headers.get('content-type') || '').toLowerCase();
@@ -919,6 +978,10 @@
             var resp = null;
             try { resp = JSON.parse(rawText); } catch(e){}
             img = extractImage(resp, rawText);
+            if(!img && resp && resp.response_url){
+              setStatus('Queued — waiting for fal.ai…', '');
+              img = await pollFalQueue(resp);
+            }
             if(!img) throw new Error('No image found in the response.');
           }
 
@@ -1071,6 +1134,7 @@
       [promptArea, apiEndpoint, apiKey, bodyTemplateEl, sizeInput, ghRepo, ghBranch, ghPath, ghToken].forEach(function(el){
         el.addEventListener('input', persist);
       });
+      authScheme.addEventListener('change', persist);
 
       renderHistory();
     })();
