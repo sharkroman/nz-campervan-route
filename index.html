@@ -163,10 +163,10 @@ svg.map { width: 100%; height: auto; display: block; border-radius: 8px; }
   transition: transform 0.18s ease;
 }
 .day-card.open .day-top::after { transform: rotate(180deg); }
-.day-card .note, .day-card .camp, .day-card .booking, .day-card .acts { display: none; }
+.day-card .note, .day-card .camp, .day-card .booking, .day-card .acts, .day-card .trail { display: none; }
 .day-card.open .note { display: block; }
 .day-card.open .camp { display: flex; }
-.day-card.open .booking, .day-card.open .acts { display: block; }
+.day-card.open .booking, .day-card.open .acts, .day-card.open .trail { display: block; }
 .expand-all {
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
   color: var(--accent); background: transparent;
@@ -225,6 +225,20 @@ svg.map { width: 100%; height: auto; display: block; border-radius: 8px; }
   display:flex; align-items:center; justify-content:center;
 }
 .acts li strong { font-weight: 700; }
+
+.trail { border-top: 1px dashed var(--rule); padding-top: 0.7rem; margin-top: 0.75rem; }
+.trail-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing:0.18em; text-transform:uppercase; color: var(--muted); margin-bottom: 0.45rem; }
+.trail ol { list-style: none; counter-reset: trail; }
+.trail li { counter-increment: trail; position: relative; padding-left: 1.55rem; margin-bottom: 0.42rem; font-size: 0.88rem; line-height: 1.45; }
+.trail li::before {
+  content: counter(trail); position: absolute; left:0; top:0.05rem;
+  width: 1.05rem; height: 1.05rem; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--rule);
+  color: var(--accent); font-family: var(--font-mono); font-size: 0.68rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.trail li strong { font-weight: 700; }
+.trail li .tmeta { display:block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
 
 /* Footer */
 footer { margin-top: 2.2rem; }
@@ -419,6 +433,14 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
             <li><span class="en"><strong>Swim with dolphins</strong> — dusky dolphins or seal kayaking</span><span class="zh"><strong>与海豚共泳</strong> — 暗色斑纹海豚或海豹皮划艇</span></li>
           </ol>
         </div>
+        <div class="trail">
+          <div class="trail-label"><span class="en">Trails near camp · ≤ 2 hr</span><span class="zh">营地周边步道 · 2小时内</span></div>
+          <ol>
+            <li><span class="en"><strong>Kaikōura Peninsula Walkway (South Bay section)</strong> — clifftop out-and-back with seals &amp; Seaward Kaikōura Range views<span class="tmeta">~1.5–2 hr return · easy–moderate</span></span><span class="zh"><strong>凯库拉半岛步道（南湾段）</strong> — 悬崖上的往返路线，可看海豹与凯库拉山景<span class="tmeta">约1.5–2小时往返 · 轻松–中等</span></span></li>
+            <li><span class="en"><strong>Point Kean seal colony loop</strong> — short coastal loop to the fur-seal colony at the peninsula tip<span class="tmeta">~45 min · easy</span></span><span class="zh"><strong>波因特基恩海豹栖息地小环线</strong> — 通往半岛顶端海豹栖息地的短海岸环线<span class="tmeta">约45分钟 · 轻松</span></span></li>
+            <li><span class="en"><strong>Foreshore &amp; Esplanade path</strong> — flat waterfront path from town, ideal for an easy run<span class="tmeta">~30–60 min · easy</span></span><span class="zh"><strong>海滨大道小径</strong> — 从镇里出发的平坦海滨步道，适合轻松慢跑<span class="tmeta">约30–60分钟 · 轻松</span></span></li>
+          </ol>
+        </div>
       </article>
 
       <article class="day-card">
@@ -477,6 +499,14 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
             <li><span class="en"><strong>Mount Victoria lookout</strong> — city views, then Cuba Street</span><span class="zh"><strong>维多利亚山观景台</strong> — 城市景观，随后逛古巴街</span></li>
           </ol>
         </div>
+        <div class="trail">
+          <div class="trail-label"><span class="en">Trails near camp · ≤ 2 hr</span><span class="zh">营地周边步道 · 2小时内</span></div>
+          <ol>
+            <li><span class="en"><strong>Te Whiti Riser</strong> — wide, smooth shared track up to Hutt Valley &amp; Wainuiomata views<span class="tmeta">~1 hr one way · easiest</span></span><span class="zh"><strong>蒂惠蒂观景步道</strong> — 宽阔平缓的共享步道上行，俯瞰哈特谷与怀努伊奥马塔<span class="tmeta">单程约1小时 · 最轻松</span></span></li>
+            <li><span class="en"><strong>Percy Scenic Reserve</strong> — native-bush waterfall loop<span class="tmeta">~30–40 min return · easy (some steps)</span></span><span class="zh"><strong>珀西风景保护区</strong> — 原生林瀑布环线<span class="tmeta">约30–40分钟往返 · 轻松（部分台阶）</span></span></li>
+            <li><span class="en"><strong>Hutt River Trail (Petone section)</strong> — flat riverside &amp; foreshore path, ideal for a run<span class="tmeta">flat · ~30–60 min out-and-back</span></span><span class="zh"><strong>哈特河步道（佩托内段）</strong> — 平坦的河畔与滨海步道，适合慢跑<span class="tmeta">平坦 · 约30–60分钟往返</span></span></li>
+          </ol>
+        </div>
       </article>
 
       <article class="day-card">
@@ -514,6 +544,14 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
             <li><span class="en"><strong>Geothermal hot pools</strong> — soak at DeBretts</span><span class="zh"><strong>地热温泉</strong> — 在 DeBretts 泡汤</span></li>
           </ol>
         </div>
+        <div class="trail">
+          <div class="trail-label"><span class="en">Trails near camp · ≤ 2 hr</span><span class="zh">营地周边步道 · 2小时内</span></div>
+          <ol>
+            <li><span class="en"><strong>Spa Thermal Park → Huka Falls</strong> — riverside trail along the Waikato, from Otumuheke Stream to the falls<span class="tmeta">~2 hr return · easy</span></span><span class="zh"><strong>地热公园 → 胡卡瀑布</strong> — 沿怀卡托河的滨水步道，从奥图穆赫克温泉溪走到瀑布<span class="tmeta">约2小时往返 · 轻松</span></span></li>
+            <li><span class="en"><strong>Huka Falls Track</strong> — quick walk to the water thundering through the canyon<span class="tmeta">~30 min one way · easy</span></span><span class="zh"><strong>胡卡瀑布步道</strong> — 快速走到峡谷中轰鸣的河水边<span class="tmeta">单程约30分钟 · 轻松</span></span></li>
+            <li><span class="en"><strong>Craters of the Moon Loop</strong> — geothermal boardwalk &amp; gravel loop among steaming vents<span class="tmeta">~30–60 min · easy · small fee</span></span><span class="zh"><strong>月球火山口环线</strong> — 地热木板路与碎石环线上蒸汽升腾<span class="tmeta">约30–60分钟 · 轻松 · 小额门票</span></span></li>
+          </ol>
+        </div>
       </article>
 
       <article class="day-card">
@@ -549,6 +587,14 @@ footer .sources { margin-top: 0.9rem; color: var(--muted); font-size:0.8rem; }
             <li><span class="en"><strong>Wai-O-Tapu</strong> — colourful thermal wonderland</span><span class="zh"><strong>怀奥塔普</strong> — 色彩斑斓的地热仙境</span></li>
             <li><span class="en"><strong>Redwoods Treewalk</strong> — forest canopy bridges</span><span class="zh"><strong>红杉树顶步道</strong> — 森林树冠吊桥</span></li>
             <li><span class="en"><strong>Te Puia</strong> — geysers &amp; Māori cultural evening (hāngī)</span><span class="zh"><strong>蒂普亚</strong> — 间歇泉与毛利文化之夜（杭吉大餐）</span></li>
+          </ol>
+        </div>
+        <div class="trail">
+          <div class="trail-label"><span class="en">Trails near camp · ≤ 2 hr</span><span class="zh">营地周边步道 · 2小时内</span></div>
+          <ol>
+            <li><span class="en"><strong>Redwood Memorial Grove Track</strong> — walk beneath 60 m+ California redwoods, boardwalk over a thermal pond<span class="tmeta">~30 min · easy</span></span><span class="zh"><strong>红杉纪念林步道</strong> — 行走在60多米高的加州红杉下，经地热池塘木栈道<span class="tmeta">约30分钟 · 轻松</span></span></li>
+            <li><span class="en"><strong>Redwoods Circuit (Memorial Grove + Waitawa Walk)</strong> — fuller tour of the groves<span class="tmeta">~1 hr · easy</span></span><span class="zh"><strong>红杉环线（纪念林 + 怀塔瓦步道）</strong> — 更完整的林间游览<span class="tmeta">约1小时 · 轻松</span></span></li>
+            <li><span class="en"><strong>Sulphur Bay Walk (partial section)</strong> — flat boardwalk from Government Gardens toward the lake<span class="tmeta">1–2 hr · easy · flat</span></span><span class="zh"><strong>硫磺湾步道（部分段）</strong> — 从政府花园通往湖边的平坦木栈道<span class="tmeta">1–2小时 · 轻松 · 平坦</span></span></li>
           </ol>
         </div>
       </article>
